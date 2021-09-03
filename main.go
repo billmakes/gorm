@@ -83,9 +83,9 @@ func Open(dialect string, args ...interface{}) (db *DB, err error) {
 	}
 
 	db = &DB{
-		db:        dbSQL,
-		logger:    defaultLogger,
-		
+		db:     dbSQL,
+		logger: defaultLogger,
+
 		// Create a clone of the default logger to avoid mutating a shared object when
 		// multiple gorm connections are created simultaneously.
 		callbacks: DefaultCallback.clone(defaultLogger),
@@ -745,7 +745,7 @@ func (s *DB) RemoveForeignKey(field string, dest string) *DB {
 	return scope.db
 }
 
-// Association start `Association Mode` to handler relations things easir in that mode, refer: https://jinzhu.github.io/gorm/associations.html#association-mode
+// Association start `Association Mode` to handler relations things easier in that mode, refer: https://jinzhu.github.io/gorm/associations.html#association-mode
 func (s *DB) Association(column string) *Association {
 	var err error
 	var scope = s.Set("gorm:association:source", s.Value).NewScope(s.Value)
